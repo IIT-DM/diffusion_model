@@ -62,8 +62,8 @@ def load_transformed_dataset():
         transforms.Lambda(lambda t: (t * 2) - 1) # Scale between [-1, 1] 
     ]
     data_transform = transforms.Compose(data_transforms)
-    # train = OneClassCIFAR10(root=".", download=True, transform=data_transform, category='airplane')
-    train = OneClassFashionMNIST(root=".", download=True, category=0)
+    train = OneClassCIFAR10(root=".", download=True, transform=data_transform, category='airplane')
+    # train = OneClassFashionMNIST(root=".", download=True, category=0)
 
     return train
 
