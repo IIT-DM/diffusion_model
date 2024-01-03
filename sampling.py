@@ -36,7 +36,7 @@ def sample_timestep(x, t):
 def sample_plot_image():
     # Sample noise
     img_size = IMG_SIZE
-    img = torch.randn((1, 3, img_size, img_size), device=device)
+    img = torch.randn((64, 3, img_size, img_size), device=device)
     plt.figure(figsize=(15,15))
     plt.axis('off')
     num_images = 10
@@ -45,7 +45,6 @@ def sample_plot_image():
     for i in range(0,T)[::-1]:
         t = torch.full((1,), i, device=device, dtype=torch.long)
         img = sample_timestep(img, t)
-        # Edit: This is to maintain the natural range of the distribution
         img = torch.clamp(img, -1.0, 1.0)
         if i % stepsize == 0:
             plt.subplot(1, num_images, int(i/stepsize)+1)

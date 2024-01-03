@@ -8,8 +8,7 @@ from sampling import *
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 optimizer = Adam(model.parameters(), lr=0.001)
-epochs = 100 # Try more!
-
+epochs = 100 
 for epoch in range(epochs):
     for step, batch in enumerate(dataloader):
       optimizer.zero_grad()

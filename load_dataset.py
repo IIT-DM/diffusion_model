@@ -1,22 +1,7 @@
-import torch
-import torchvision
 import matplotlib.pyplot as plt
-from torchvision.datasets import CIFAR10, FashionMNIST
+from torchvision.datasets import CIFAR10
 from torch.utils.data import DataLoader, Dataset
-
-class OneClassFashionMNIST(Dataset):
-    def __init__(self, root=".", download=True, transform=torchvision.transforms.ToTensor(), category=0):
-        self.data = FashionMNIST(root=root, download=download, transform=transform)
-        self.category = category
-        self.indices = [i for i, (_, label) in enumerate(self.data) if label == self.category]
-
-    def __getitem__(self, index):
-        image, _ = self.data[self.indices[index]]
-        return image
-
-    def __len__(self):
-        return len(self.indices)
-
+import torchvision
 
 class OneClassCIFAR10(Dataset):
     def __init__(self, root=".", download=True, transform=torchvision.transforms.ToTensor(), category='airplane'):
@@ -37,9 +22,9 @@ class OneClassCIFAR10(Dataset):
         return len(self.indices)
 
 
-def show_images(dataloader, num_samples=12, cols=4):
+def show_images(dataloader, num_samples=6, cols=3):
     """ Plots some samples from the dataset """
-    plt.figure(figsize=(15,15)) 
+    plt.figure(figsize=(5,5))
     for i, batch in enumerate(dataloader):
         if i == num_samples:
             break
